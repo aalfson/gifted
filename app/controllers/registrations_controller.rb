@@ -1,4 +1,6 @@
 #Registrations controller to handle Svpply authorization redirect after registration
+require 'httparty'
+require 'json'
 
 class RegistrationsController < Devise::RegistrationsController
 
@@ -6,16 +8,25 @@ class RegistrationsController < Devise::RegistrationsController
  
   #continues registration after Svpply authorization
   def continue
+      # set code provided by svpply
       svpplyCode = params[:code]
       current_user.svpplyCode = svpplyCode
       current_user.save
       
+      #get o-auth access token
       clientSecret = "6ecc07d8fb34184083e036b2e7b180f0"
       clientId = "734b93a296683c18c04dbdfd9c0732f6"
       tokenResponse = HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}")
       
       current_user.accessToken = tokenResponse[:access_token]
       current_user.save
+      
+      #get user id
+      userIdRequest = URI.encode("https://api.svpply.com/v1/users/me.json?access_token=#{self.accessToken}")
+      svpplyUserId = JSON.parse(HTTParty.get(userIdRequest).response.body)["response"]["user"]["id"]
+      current_user.svpplyUserId = svpplyUserId
+      current_user.save 
+      
   end
   
   #processes registration/continue form and redirects to success page
