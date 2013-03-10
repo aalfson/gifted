@@ -6,7 +6,15 @@ class RegistrationsController < Devise::RegistrationsController
  
   #continues registration after Svpply authorization
   def continue
-      current_user.svpplyCode = params[:code]
+      svpplyCode = params[:code]
+      current_user.svpplyCode = svpplyCode
+      current_user.save
+      
+      clientSecret = "6ecc07d8fb34184083e036b2e7b180f0"
+      clientId = "734b93a296683c18c04dbdfd9c0732f6"
+      tokenResponse = HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}")
+      
+      current_user.accessToken = tokenResponse[:access_token]
       current_user.save
   end
   
@@ -53,6 +61,8 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     #specify Svpply o-auth login url here. 
     "https://svpply.com/oauth?client_id=734b93a296683c18c04dbdfd9c0732f6&response_type=code&redirect_uri=http://gifted.herokuapp.com/registration/continue&scope=read_basic"
+
+    #"/registration/continue?code=1234"
   end
   
 end
