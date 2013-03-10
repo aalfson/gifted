@@ -2,7 +2,7 @@
 
 class RegistrationsController < Devise::RegistrationsController
 
-  before_filter :check_for_user
+  before_filter :check_for_user, :only => [:continue, :finish]
  
   #continues registration after Svpply authorization
   def continue
