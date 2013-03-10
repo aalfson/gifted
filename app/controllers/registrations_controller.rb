@@ -2,11 +2,19 @@
 
 class RegistrationsController < Devise::RegistrationsController
  
+  def continue
+    @code = params[:code]
+  end
+  
+  def finish
+    
+  end
   
   protected
 
   def after_sign_up_path_for(resource)
     #specify Svpply o-auth login url here. 
-    '/an/example/path'
+    'registration/continue?code=abcdefg'
   end
+  
 end
