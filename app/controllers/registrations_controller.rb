@@ -39,25 +39,12 @@ class RegistrationsController < Devise::RegistrationsController
     day = params[:birthday]["(3i)"].to_i
     current_user.birthday = Date.new(year, month, day)
     
-    recipients = Array.new()
+    current_user.recipient1 = params[:recipient1]
+    current_user.recipient2 = params[:recipient2]
+    current_user.recipient3 = params[:recipient3]
+    current_user.recipient4 = params[:recipient4]
+    current_user.recipient5 = params[:recipient5]
     
-    if (params[:recipient1].to_s.empty? == false)
-      recipients = recipients.push(params[:recipient1])
-    end
-    if (params[:recipient2].to_s.empty? == false)
-      recipients = recipients.push(params[:recipient2].to_s)      
-    end
-    if (params[:recipient3].to_s.empty? == false)
-      recipients = recipients.push(params[:recipient3].to_s)      
-    end
-    if (params[:recipient4].to_s.empty? == false)
-      recipients = recipients.push(params[:recipient4].to_s)      
-    end
-    if (params[:recipient5].to_s.empty? == false)
-      recipients = recipients.push(params[:recipient5].to_s)      
-    end
-    
-    current_user.recipients = recipients
     current_user.save 
   end
   

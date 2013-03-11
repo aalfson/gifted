@@ -57,13 +57,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span9">
-		   <!-- devise notifications -->
-		   	<p class="notice"><%= notice %></p>
-			<% if alert != nil %>
-		    	<p class="alert"><%= alert %></p>
-			<% end %>
-		  
+        <div class="span9">		  
 		  <%= bootstrap_flash %>
           <%= yield %>
         </div>

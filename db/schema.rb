@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310202330) do
+ActiveRecord::Schema.define(:version => 20130311005721) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(:version => 20130310202330) do
     t.string   "recipients"
     t.string   "accessToken"
     t.string   "svpplyUserId"
+    t.string   "recipient1"
+    t.string   "recipient2"
+    t.string   "recipient3"
+    t.string   "recipient4"
+    t.string   "recipient5"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
