@@ -14,7 +14,11 @@ gem 'whenever'
 # devise for user accounts
 gem 'devise'
 
+# for api requests
 gem 'httparty'
+
+# for easy birthday querying 
+gem 'birthday', '~> 0.2.0'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -3,8 +3,8 @@ require 'json'
 require 'uri'
 
 class User < ActiveRecord::Base
-  
   include HTTParty
+  acts_as_birthday :birthday
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :birthday, :recipients
+  
+  #scopes
+  scope :birthday_2_weeks_from_today, find_birthdays_for(Time.now + 2.week, Time.now + 2.week)
+  
   
   def sendSampleEmail    
     user = self
