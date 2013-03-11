@@ -22,7 +22,7 @@ jQuery(function() {
 				type: 'POST', 
 				url: '/sample',
 				success: function() {
-					$("#mainContainer").prepend('<div class="alert fade in alert-success"><button class="close" data-dismiss="alert">×</button>Signed out successfully.</div>');
+					$("#mainContainer").prepend('<div class="alert fade in alert-success"><button class="close" data-dismiss="alert">×</button>Sample email sent successfully.</div>');
 				},
 				error: function(data) {
 					alert("error");
