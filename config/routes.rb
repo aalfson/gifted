@@ -6,6 +6,8 @@ Gifted::Application.routes.draw do
     match 'registration/finish' => 'registrations#finish'
   end
   
+  match 'sample' => 'sample#sendSample'
+  
   root :to => 'home#index'; 
   
  

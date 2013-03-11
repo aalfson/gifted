@@ -4,7 +4,7 @@ require 'json'
 
 class RegistrationsController < Devise::RegistrationsController
 
-  before_filter :check_for_user, :only => [:continue, :finish]
+  before_filter :check_for_user, :only => [:continue, :finish, :test]
  
   #continues registration after Svpply authorization
   def continue
