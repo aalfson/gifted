@@ -16,9 +16,9 @@ class RegistrationsController < Devise::RegistrationsController
       #get o-auth access token
       clientSecret = "6ecc07d8fb34184083e036b2e7b180f0"
       clientId = "734b93a296683c18c04dbdfd9c0732f6"
-      tokenResponse = HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}")
-      
-      current_user.accessToken = tokenResponse[:access_token]
+      tokenResponse = JSON.parse(HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}").response.body)
+  
+      current_user.accessToken = tokenResponse["access_token"]
       current_user.save
       
       #get user id
