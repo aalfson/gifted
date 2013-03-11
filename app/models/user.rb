@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
 
          zapposProductData.push(productDetails)
       rescue
-        # do nothing
+        # do nothing - will send error email to user. 
       end   
     end
     
