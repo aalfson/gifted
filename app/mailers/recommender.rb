@@ -1,25 +1,12 @@
 class Recommender < ActionMailer::Base
   default from: "giftedDemoApp@gmail.com"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.recommender.sendSampleEmail.subject
-  #
-  def sendSampleEmail
-    @greeting = "Hi"
-
-    mail to: "aaron.alfson@gmail.com", subject: "Test"
+  def sendEmail user, products, recipient
+    @greeting = "Hi!"
+    @message = "#{user.name}'s birthday is in 2 weeks! Zappos, Svpply, and #{user.name} thought you might like some gift ideas so you can help make #{user.name}'s birthday the best ever."
+    @products = products
+    
+    mail to: "#{recipient}", subject: "#{user.name}'s Birthday Gift Ideas"
   end
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.recommender.sendEmails.subject
-  #
-  def sendEmails
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
-  end
+  
 end

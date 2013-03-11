@@ -1,0 +1,11 @@
+<p><%= @greeting %></p>
+<p><%= @message %></p>
+
+<% @products.each do |p| %>
+	<tr>
+		<td><%= image_tag p[:image] %></td>
+		<td><h4><%= p[:title] %></h4><p><%= p[:description] %></p><p><%= p[:price] %></p></td>
+		<td><a href="<%= p[:buyURL] %>">Buy @ Zappos</a></td>
+	</tr>
+	<hr/>
+<% end %>

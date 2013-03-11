@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+jQuery(function() {
+	
+	$("#sampleEmailButton").bind("click", function(e) {
+		$.ajax({
+				type: 'POST', 
+				url: '/sample',
+				success: function() {
+					$("#mainContainer").prepend('<div class="alert fade in alert-success"><button class="close" data-dismiss="alert">×</button>Signed out successfully.</div>');
+				},
+				error: function(data) {
+					alert("error");
+					console.log(data);
+				}
+			});
+	}); 
+	
+}); 

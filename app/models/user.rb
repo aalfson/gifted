@@ -14,10 +14,23 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :birthday, :recipients
   
-  def sendSampleEmail
-    
-    puts "**** sendSampleEmail called ****"
-    
+  def sendSampleEmail    
+    user = self
+    products = [{
+      image: "https://s3.amazonaws.com/assets.svpply.com/medium/960340.jpg?1362951932", 
+      title: "New Balance Classics ML574 at Zappos.com", 
+      description: "Add some old-school vibe to your attire with the ML574 sneakers from New Balance Classics!",
+      price: "$55.99",
+      buyURL: "http://www.zappos.com/new-balance-classics-ml574"
+      },{
+        image: "https://s3.amazonaws.com/assets.svpply.com/medium/960340.jpg?1362951932", 
+        title: "New Balance Classics ML574 at Zappos.com", 
+        description: "Add some old-school vibe to your attire with the ML574 sneakers from New Balance Classics!",
+        price: "$55.99",
+        buyURL: "http://www.zappos.com/new-balance-classics-ml574"
+        }]
+    recipient = self.email
+    Recommender.sendEmail(user, products, recipient).deliver
   end
   
   def sendEmails

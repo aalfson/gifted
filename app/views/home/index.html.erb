@@ -1,13 +1,12 @@
+<div class="hero-unit">
+	<h1>Get Awesome Birthday Presents!</h1>
+	<p>Gifted taps into your <a href="http://www.svpply.com">Svpply</a> account to provide birthday gift ideas that your friends and family can purchase on <a href="http://www.zappos.com">Zappos.com</a></p>
 
-<% if flash[:success] != nil %>
-	<p class="alert alert-success"><%= flash[:success] %></p>
-<% end %>
-
-<h1><%= @welcome %></h1>
-
-
-<% if user_signed_in? %>
-	<%= form_tag("/sample", method: "post") do %>
-		  <%= submit_tag "Send Sample Email", :class => "btn btn-primary" %>
+	<% if user_signed_in? %>
+		<a href="#" id="sampleEmailButton" class="btn btn-success">Send Sample Email</a>
+	<% else %>
+		<%= link_to "Sign In", :new_user_session, {:class => "btn btn-primary"}  %>
+		<%= link_to "Register", :new_user_registration, {:class => "btn btn-info"} %>
 	<% end %>
-<% end %>
+
+</div>

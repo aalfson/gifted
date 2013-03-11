@@ -4,12 +4,12 @@ class SampleController < ApplicationController
   
   #sends sample email
   def sendSample
+    current_user.sendSampleEmail
     
-    #figure out how to send flash:success
-    
-    # current_user.sendSampleEmail
-    Recommender.sendSampleEmail.deliver
-    redirect_to root_path 
+    #respond to ajax call
+    respond_to do |format|
+      format.js
+    end  
   end
   
   protected
