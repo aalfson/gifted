@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.save
       
       #get user id
-      userIdRequest = URI.encode("https://api.svpply.com/v1/users/me.json?access_token=#{self.accessToken}")
+      userIdRequest = URI.encode("https://api.svpply.com/v1/users/me.json?access_token=#{current_user.accessToken}")
       svpplyUserId = JSON.parse(HTTParty.get(userIdRequest).response.body)["response"]["user"]["id"]
       current_user.svpplyUserId = svpplyUserId
       current_user.save 
