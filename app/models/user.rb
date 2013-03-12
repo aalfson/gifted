@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     user = self
     products = getProducts
     
-    if (product.empty? == false)
+    if (products.empty? == false)
       if user.recipient1 != nil and !user.recipient1.blank?
         Recommender.sendEmail(user, products, user.recipient1).deliver
       end
