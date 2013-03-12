@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     if (products.empty? == false)
       Recommender.sendEmail(user, products, recipient).deliver
     else
-      Recommender.sendErrorEmail(user)
+      Recommender.sendErrorEmail(user).deliver
     end
   end
   
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
         Recommender.sendEmail(user, products, user.recipient5).deliver
       end  
     else
-        Recommender.sendErrorEmail(user)
+        Recommender.sendErrorEmail(user).deliver
     end
     
   end 
