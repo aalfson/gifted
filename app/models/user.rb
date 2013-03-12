@@ -83,6 +83,7 @@ class User < ActiveRecord::Base
     term.gsub!(" - Zappos Couture", "")
     term.gsub!(" - Zappos.com Free Shipping BOTH Ways", "")
     term.gsub!(" at Couture.Zappos.com", "")
+    term.gsub!(" - Zappos Couture", "")
     term.gsub!(" - Search Zappos.com", "")
     term
   end
