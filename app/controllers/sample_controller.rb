@@ -4,11 +4,17 @@ class SampleController < ApplicationController
   
   #sends sample email
   def sendSample
-    current_user.sendSampleEmail
+    result = current_user.sendSampleEmail
     
     #respond to ajax call
     respond_to do |format|
+      
+      #send an error if an error email was sent. 
+      if result == nil
+        response.status = 500
+      end
       format.js
+      
     end  
   end
   

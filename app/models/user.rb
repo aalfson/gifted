@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
       Recommender.sendEmail(user, products, recipient).deliver
     else
       Recommender.sendErrorEmail(user).deliver
+      return nil
     end
   end
   

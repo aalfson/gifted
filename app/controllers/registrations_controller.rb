@@ -16,17 +16,21 @@ class RegistrationsController < Devise::RegistrationsController
       #get o-auth access token
       clientSecret = "6ecc07d8fb34184083e036b2e7b180f0"
       clientId = "734b93a296683c18c04dbdfd9c0732f6"
-      tokenResponse = JSON.parse(HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}").response.body)
-  
-      current_user.accessToken = tokenResponse["access_token"]
-      current_user.save
       
-      #get user id
-      userIdRequest = URI.encode("https://api.svpply.com/v1/users/me.json?access_token=#{current_user.accessToken}")
-      svpplyUserId = JSON.parse(HTTParty.get(userIdRequest).response.body)["response"]["user"]["id"]
-      current_user.svpplyUserId = svpplyUserId
-      current_user.save 
-      
+      begin
+        tokenResponse = JSON.parse(HTTParty.get("https://svpply.com/oauth/access_token?client_id=#{clientId}&client_secret=#{clientSecret}&code=#{svpplyCode}").response.body)
+    
+        current_user.accessToken = tokenResponse["access_token"]
+        current_user.save
+    
+        #get user id
+        userIdRequest = URI.encode("https://api.svpply.com/v1/users/me.json?access_token=#{current_user.accessToken}")
+        svpplyUserId = JSON.parse(HTTParty.get(userIdRequest).response.body)["response"]["user"]["id"]
+        current_user.svpplyUserId = svpplyUserId
+        current_user.save 
+      rescue
+        redirect_to root_path, :alert => "An error occured. We could not complete your registration."
+      end
   end
   
   #processes registration/continue form and redirects to success page
@@ -47,6 +51,7 @@ class RegistrationsController < Devise::RegistrationsController
     
     current_user.save 
   end
+  
   
   protected
   
