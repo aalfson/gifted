@@ -16,9 +16,9 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-
+# whenever --update-crontab gifted
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '4:30 am' do
-  runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
+every 1.day, :at => '3:30 am' do
+  rake "runDailyEmail"
 end
