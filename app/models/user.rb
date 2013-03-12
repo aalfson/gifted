@@ -32,19 +32,19 @@ class User < ActiveRecord::Base
     products = getProducts
     
     
-    if user.recipient1 != nil or user.recipient1 != ""
+    if user.recipient1 != nil or !user.recipient1.blank?
       Recommender.sendEmail(user, products, user.recipient1).deliver
     end
-    if user.recipient2 != nil or user.recipient2 != ""
+    if user.recipient2 != nil or !user.recipient2.blank?
       Recommender.sendEmail(user, products, user.recipient2).deliver
     end
-    if user.recipient3 != nil or user.recipient3 != ""
+    if user.recipient3 != nil or !user.recipient3.blank?
       Recommender.sendEmail(user, products, user.recipient3).deliver
     end
-    if user.recipient4 != nil or user.recipient5 != ""
+    if user.recipient4 != nil or !user.recipient5.blank?
       Recommender.sendEmail(user, products, user.recipient4).deliver
     end
-    if user.recipient5 != nil or user.recipient5 != ""
+    if user.recipient5 != nil or !user.recipient5.blank?
       Recommender.sendEmail(user, products, user.recipient5).deliver
     end  
     
