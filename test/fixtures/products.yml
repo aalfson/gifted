@@ -1,0 +1,6 @@
+shoes: {
+  image: "https://s3.amazonaws.com/assets.svpply.com/medium/960340.jpg?1362951932", 
+  title: "New Balance Classics ML574 at Zappos.com", 
+  price: "$55.99",
+  buyURL: "http://www.zappos.com/new-balance-classics-ml574"
+  }
