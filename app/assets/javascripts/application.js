@@ -25,7 +25,7 @@ jQuery(function() {
 					$("#mainContainer").prepend('<div class="alert fade in alert-success"><button class="close" data-dismiss="alert">×</button>Sample email sent successfully.</div>');
 				},
 				error: function(data) {
-					alert("error");
+					$("#mainContainer").prepend('<div class="alert fade in "alert alert-error"><button class="close" data-dismiss="alert">×</button>There was a problem sending your email.</div>');
 					console.log(data);
 				}
 			});

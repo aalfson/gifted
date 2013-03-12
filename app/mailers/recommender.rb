@@ -9,4 +9,11 @@ class Recommender < ActionMailer::Base
     mail to: "#{recipient}", subject: "#{user.name}'s Birthday Gift Ideas"
   end
   
+  def sendErrorEmail user
+    @greeting = "Hi #{user.name},"
+    @message = "Sorry, we've had some trouble sending out your birthday gift suggestions."
+    
+    mail to: "#{user.email}", subject: "There was a problem with your birthday gift suggestion email."
+  end
+  
 end

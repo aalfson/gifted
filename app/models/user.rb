@@ -23,7 +23,12 @@ class User < ActiveRecord::Base
     user = self
     products = getProducts
     recipient = self.email
-    Recommender.sendEmail(user, products, recipient).deliver
+    
+    if (products.empty? == false)
+      Recommender.sendEmail(user, products, recipient).deliver
+    else
+      Recommender.sendErrorEmail(user)
+    end
   end
   
   def sendEmails
@@ -31,22 +36,25 @@ class User < ActiveRecord::Base
     user = self
     products = getProducts
     
-    
-    if user.recipient1 != nil and !user.recipient1.blank?
-      Recommender.sendEmail(user, products, user.recipient1).deliver
+    if (product.empty? == false)
+      if user.recipient1 != nil and !user.recipient1.blank?
+        Recommender.sendEmail(user, products, user.recipient1).deliver
+      end
+      if user.recipient2 != nil and !user.recipient2.blank?
+        Recommender.sendEmail(user, products, user.recipient2).deliver
+      end
+      if user.recipient3 != nil and !user.recipient3.blank?
+        Recommender.sendEmail(user, products, user.recipient3).deliver
+      end
+      if user.recipient4 != nil and !user.recipient5.blank?
+        Recommender.sendEmail(user, products, user.recipient4).deliver
+      end
+      if user.recipient5 != nil and !user.recipient5.blank?
+        Recommender.sendEmail(user, products, user.recipient5).deliver
+      end  
+    else
+        Recommender.sendErrorEmail(user)
     end
-    if user.recipient2 != nil and !user.recipient2.blank?
-      Recommender.sendEmail(user, products, user.recipient2).deliver
-    end
-    if user.recipient3 != nil and !user.recipient3.blank?
-      Recommender.sendEmail(user, products, user.recipient3).deliver
-    end
-    if user.recipient4 != nil and !user.recipient5.blank?
-      Recommender.sendEmail(user, products, user.recipient4).deliver
-    end
-    if user.recipient5 != nil and !user.recipient5.blank?
-      Recommender.sendEmail(user, products, user.recipient5).deliver
-    end  
     
   end 
   
