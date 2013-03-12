@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     products = getProducts
     recipient = self.email
     
-    if (products.empty? == false)
+    if (products != nil and products.emtpy? == false)
       Recommender.sendEmail(user, products, recipient).deliver
     else
       Recommender.sendErrorEmail(user).deliver

@@ -7,7 +7,7 @@
 		<%= label_tag(:birthday, "Your Birthday:") %>
 		<%= date_select(:birthday, "", {discard_year: true, :order => [:month, :day]}, :class => "span2") %>
 		
-		<p>Please enter the email addresses of the people you want to suggestions for your birthday gift:</p>
+		<p>Please enter the email addresses of the people you want to receive suggestions for your birthday gift:</p>
 		
 		<%= label_tag(:recipient1, "Recipient 1: ") %>
 		<%= email_field_tag(:recipient1) %>
