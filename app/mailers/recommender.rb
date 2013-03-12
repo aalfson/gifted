@@ -3,7 +3,7 @@ class Recommender < ActionMailer::Base
 
   def sendEmail user, products, recipient
     
-    puts("**** SUCCESSFUL EMAIL SENT FOR #{user} ****")
+    puts("**** SUCCESSFUL EMAIL SENT FOR #{user.name} ****")
     
     @greeting = "Hi!"
     @message = "#{user.name}'s birthday is in 2 weeks! Zappos, Svpply, and #{user.name} thought you might like some gift ideas so you can help make #{user.name}'s birthday the best ever."
@@ -13,7 +13,7 @@ class Recommender < ActionMailer::Base
   end
   
   def sendErrorEmail user
-    puts("**** ERROR EMAIL SENT FOR #{user} ****")
+    puts("**** ERROR EMAIL SENT FOR #{user.name} ****")
     @greeting = "Hi #{user.name},"
     @message = "Sorry, we've had some trouble sending out your birthday gift suggestions."
 
