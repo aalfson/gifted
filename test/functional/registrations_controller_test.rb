@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RegistrationsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  #TODO: test to see post-svpply authorization registration follow-on works correctly. 
+
 end
