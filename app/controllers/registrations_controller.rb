@@ -63,7 +63,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     #specify Svpply o-auth login url here. 
-    "https://svpply.com/oauth?client_id=734b93a296683c18c04dbdfd9c0732f6&response_type=code&redirect_uri=http://gifted.herokuapp.com/registration/continue&scope=read_basic"
+    "https://svpply.com/oauth?client_id=734b93a296683c18c04dbdfd9c0732f6&response_type=code&redirect_uri=http://gifted.herokuapp.com/registration/continue&scope=write_basic"
 
     #"/registration/continue?code=1234"
   end
